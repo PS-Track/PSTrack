@@ -34,3 +34,27 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+
+
+import type { Config } from 'tailwindcss'
+
+const config: Config = {
+content: [
+'./src/pages/**/*.{js,ts,jsx,tsx,mdx}',
+'./src/components/**/*.{js,ts,jsx,tsx,mdx}',
+'./src/app/**/*.{js,ts,jsx,tsx,mdx}',
+],
+theme: {
+extend: {
+colors: {
+dark: '#09090b',
+gray: '#17171799',
+stone: '#2f2f2f',
+background: 'var(--background)',
+foreground: 'var(--foreground)',
+},
+},
+},
+plugins: [],
+}
+export default config
