@@ -1,5 +1,11 @@
 on:
   pull_request:
+    types: [ opened, synchronize, closed ]
+
+env:
+  VERCEL_ACCESS_TOKEN: ${{ secrets.VERCEL_ACCESS_TOKEN }}
+  VERCEL_PROJECT_ID: <YOUR_VERCEL_PROJECT_ID>
+
 
 jobs:
   prettier:
@@ -82,3 +88,17 @@ jobs:
 
       - name: build
         run: yarn build
+
+  deploy:
+    if: ${{ github.event.action == 'opened' || github.event.action == 'synchronize' }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: snaplet/vercel-action@v3
+
+  delete:
+    if: ${{ github.event.action == 'closed' }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: snaplet/vercel-action@v3
+        with:
+          delete: true
