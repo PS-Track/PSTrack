@@ -16,16 +16,16 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: setup node env
+      - name: Setup node env
         uses: actions/setup-node@v4
         with:
           node-version: '>=16'
 
-      - name: install dependencies
-        run: yarn install --frozen-lockfile
+      - name: Install dependencies
+        run: npm ci
 
-      - name: run prettier
-        run: yarn format
+      - name: Run Prettier
+        run: npm run format
 
   eslint:
     name: Run Eslint
@@ -35,16 +35,16 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: setup node env
+      - name: Setup node env
         uses: actions/setup-node@v4
         with:
           node-version: '>=16'
 
-      - name: install dependencies
-        run: yarn install --frozen-lockfile
+      - name: Install dependencies
+        run: npm ci
 
-      - name: run eslint
-        run: yarn eslint
+      - name: Run Eslint
+        run: npm run lint
 
   typescript:
     name: Run TS type check
@@ -54,16 +54,16 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: setup node env
+      - name: Setup node env
         uses: actions/setup-node@v4
         with:
           node-version: '>=16'
 
-      - name: install dependencies
-        run: yarn install --frozen-lockfile
+      - name: Install dependencies
+        run: npm ci
 
-      - name: run ts type checks
-        run: yarn tsc --noEmit
+      - name: Run TS type checks
+        run: npm run tsc --noEmit
 
   build:
     name: Build
@@ -78,27 +78,26 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: setup node env
+      - name: Setup node env
         uses: actions/setup-node@v4
         with:
           node-version: '>=16'
 
-      - name: install dependencies
-        run: yarn install --frozen-lockfile
+      - name: Install dependencies
+        run: npm ci
 
-      - name: build
-        run: yarn build
+      - name: Build
+        run: npm run build
+        #  deploy:
+        #    if: ${{ github.event.action == 'opened' || github.event.action == 'synchronize' }}
+        #    runs-on: ubuntu-latest
+        #    steps:
+        #      - uses: snaplet/vercel-action@v3
 
-          #  deploy:
-          #    if: ${{ github.event.action == 'opened' || github.event.action == 'synchronize' }}
-          #    runs-on: ubuntu-latest
-          #    steps:
-          #      - uses: snaplet/vercel-action@v3
-
-          #  delete:
-          #    if: ${{ github.event.action == 'closed' }}
-          #    runs-on: ubuntu-latest
-          #    steps:
-          #      - uses: snaplet/vercel-action@v3
-          #        with:
-          #          delete: true
+        #  delete:
+        #    if: ${{ github.event.action == 'closed' }}
+        #    runs-on: ubuntu-latest
+        #    steps:
+        #      - uses: snaplet/vercel-action@v3
+        #        with:
+        #          delete: true
