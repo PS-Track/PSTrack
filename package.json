@@ -14,15 +14,6 @@
     "lint-staged": "lint-staged",
     "tsc": "tsc --noEmit"
   },
-  "lint-staged": {
-    "**/*.{js,jsx,ts,tsx}": [
-      "eslint --fix",
-      "prettier --write"
-    ],
-    "**/*.{json,md,html,css,scss,mjs}": [
-      "prettier --write"
-    ]
-  },
   "dependencies": {
     "@commitlint/cli": "^19.5.0",
     "@commitlint/config-conventional": "^19.5.0",
