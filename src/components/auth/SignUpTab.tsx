@@ -10,16 +10,19 @@ import {
 import { Label } from '@/components/ui/label'
 import { Input } from '@/components/ui/input'
 import { Button } from '@/components/ui/button'
-import { useState } from 'react'
+import { useAuth } from '@/hooks/useAuth'
 
 export default function SignUpTab() {
-  const [isLoading, setIsLoading] = useState<boolean>(false)
+  const { handleRegister, isLoading } = useAuth()
 
-  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+  const handleSignUp = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault()
-    setIsLoading(true)
-    await new Promise(resolve => setTimeout(resolve, 2000))
-    setIsLoading(false)
+
+    const formData = new FormData(event.currentTarget)
+    const email = formData.get('email') as string
+    const password = formData.get('password') as string
+    console.log(email, password)
+    await handleRegister({ email, password })
   }
 
   return (
@@ -29,39 +32,35 @@ export default function SignUpTab() {
           <CardTitle>Sign Up</CardTitle>
           <CardDescription>Create a new account to get started.</CardDescription>
         </CardHeader>
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSignUp}>
           <CardContent className="space-y-4">
             <div className="space-y-2">
-              <Label htmlFor="signup-name">Name</Label>
+              <Label htmlFor="email">Email</Label>
               <Input
-                id="signup-name"
-                type="text"
-                placeholder="John Doe"
-                required
-              />
-            </div>
-            <div className="space-y-2">
-              <Label htmlFor="signup-email">Email</Label>
-              <Input
-                id="signup-email"
+                id="email"
                 type="email"
+                name="email"
+                defaultValue="husam@gmail.com"
                 placeholder="m@example.com"
                 required
               />
             </div>
             <div className="space-y-2">
-              <Label htmlFor="signup-password">Password</Label>
+              <Label htmlFor="password">Password</Label>
               <Input
-                id="signup-password"
+                id="password"
                 type="password"
+                name="password"
+                defaultValue="123456789"
                 required
               />
             </div>
             <div className="space-y-2">
-              <Label htmlFor="signup-confirm-password">Confirm Password</Label>
+              <Label htmlFor="confirm-password">Confirm Password</Label>
               <Input
-                id="signup-confirm-password"
+                id="confirm-password"
                 type="password"
+                defaultValue="123456789"
                 required
               />
             </div>

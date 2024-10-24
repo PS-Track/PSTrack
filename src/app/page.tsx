@@ -1,7 +1,15 @@
+'use client'
+
+import { useAuth } from '@/hooks/useAuth'
+import { Button } from '@/components/ui/button'
+
 export default function Home() {
+  const { user, handleLogout } = useAuth()
+
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      Hi
+    <div className="flex h-screen w-screen flex-col items-center justify-center gap-4">
+      <span>{user?.email || null}</span>
+      <Button onClick={handleLogout}>logout</Button>
     </div>
-  );
+  )
 }
