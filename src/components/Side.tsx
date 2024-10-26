@@ -19,7 +19,6 @@ import {
   Map,
   MoreHorizontal,
   PieChart,
-  Plus,
   Settings2,
   Sparkles,
   SquareTerminal,
@@ -43,7 +42,6 @@ import {
   DropdownMenuItem,
   DropdownMenuLabel,
   DropdownMenuSeparator,
-  DropdownMenuShortcut,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu'
 import { Separator } from '@/components/ui/separator'
