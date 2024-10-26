@@ -5,6 +5,7 @@ import { ReactNode } from 'react'
 import AuthProvider from '@/components/auth/AuthProvider'
 import Providers from '@/app/providers'
 import './globals.css'
+import { SidebarProvider } from '@/components/ui/sidebar'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -20,11 +21,13 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <Providers>
-        <AuthProvider>
-          <body className={inter.className}>{children}</body>
-        </AuthProvider>
-      </Providers>
+      <body className={inter.className}>
+        <Providers>
+          <AuthProvider>
+            <SidebarProvider>{children}</SidebarProvider>
+          </AuthProvider>
+        </Providers>
+      </body>
     </html>
   )
 }
