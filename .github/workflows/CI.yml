@@ -22,40 +22,8 @@ jobs:
       - name: Run Prettier
         run: npm run format
 
-  eslint:
-    name: Run Eslint
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-
-      - name: Setup node env
-        uses: actions/setup-node@v4
-        with:
-          node-version: '>=16'
-
-      - name: Install dependencies
-        run: npm ci
-
       - name: Run Eslint
         run: npm run lint
-
-  typescript:
-    name: Run TS type check
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-
-      - name: Setup node env
-        uses: actions/setup-node@v4
-        with:
-          node-version: '>=16'
-
-      - name: Install dependencies
-        run: npm ci
 
       - name: Run TS type checks
         run: npm run tsc --noEmit
